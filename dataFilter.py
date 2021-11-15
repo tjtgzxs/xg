@@ -72,15 +72,15 @@ if __name__=="__main__":
     t1 = time.time()
     begin=datetime.date(2020,7,26)
     end=datetime.date(2021,10,31)
-    # for i in range((end - begin).days + 1):
-    #     day = begin + datetime.timedelta(days=i)
-    #     try:
-    #         get_ids("US", str(day))
-    #         print(f"{day}的数据跑完")
-    #     except Exception as e:
-    #         print(f"{day}的数据没有跑 原因{e}")
-    #
-    #         continue
+    for i in range((end - begin).days + 1):
+        day = begin + datetime.timedelta(days=i)
+        try:
+            get_ids("US", str(day))
+            print(f"{day}的数据跑完")
+        except Exception as e:
+            print(f"{day}的数据没有跑 原因{e}")
+
+            continue
 
     t2=time.time()
     print(int(t2)-int(t1))
