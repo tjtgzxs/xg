@@ -33,17 +33,19 @@ def get_content(id):
     # for tweet in public_tweets:
     # print (tweet.text)
     status = api.get_status(id, tweet_mode="extended")
+    # print(status)
     # re_tweet_ = api.retweets(id)
     try:
         result=status.retweeted_status.full_text
     except AttributeError:
         result=status.full_text
+
     result=str(result)
     # print(result)
     r_index=result.split("https")
-    print(r_index)
-    print(r_index[0])
-    return  r_index[0]
+    # print(r_index)
+    # print(r_index[0])
+    return  {"content":r_index[0].replace("\n"," "),"like_count":status.favorite_count,"retweet_count":status.retweet_count}
 
 
 
