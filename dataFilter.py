@@ -21,6 +21,7 @@ def get_ids(country,date):
     #!wget dataset_URL -O clean-dataset.tsv.gz
     # wget.download(dataset_URL, out='clean-dataset.tsv.gz')
     RESOURCE_DIR="/home/ubuntu/resources/covid19_twitter/dailies/"
+    # RESOURCE_DIR="/home/tjtgzxs/PycharmProjects/corona/"
     if os.path.exists(f'{date}.tsv')==False:
         #Unzips the dataset and gets the TSV dataset
         with gzip.open(RESOURCE_DIR+f'{date}/{date}_clean-dataset.tsv.gz', 'rb') as f_in:
@@ -51,16 +52,16 @@ def get_ids(country,date):
             tsvreader = csv.reader(tsvfile, delimiter="\t")
 
             if current_line == 1:
-                pass
-
+                filtered_tw.append("title\tlike_count\tretweet_count")
                 for line in tsvreader:
                     if line[3] == filtered_language and line[4]==country:
                         try:
+                            print(f"current line {current_line}")
                             content=getContent.get_content(line[0])
-                            print(content)
-                            filtered_tw.append(str(content['content'])+"\t"+content['like_count']+"\t"+content['retweet_count']+"\n")
-                            current_line += 1
-                            if current_line>=70:
+                            write_content=str(content['content'])+"\t"+str(content['like_count'])+"\t"+str(content['retweet_count'])+"\n"
+                            filtered_tw.append(write_content)
+                            current_line +=1
+                            if current_line>=102:
                                 print(f'c_line{current_line}')
                                 break
                         except:
