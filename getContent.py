@@ -45,7 +45,8 @@ def get_content(id):
     r_index=result.split("https")
     # print(r_index)
     # print(r_index[0])
-    return  {"content":r_index[0].replace("\n"," "),"like_count":status.favorite_count,"retweet_count":status.retweet_count}
+    content=r_index[0].replace("\n"," ")
+    return  {"content":content.replace("\r"," "),"like_count":status.favorite_count,"retweet_count":status.retweet_count}
 
 
 
