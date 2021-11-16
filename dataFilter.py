@@ -57,6 +57,7 @@ def get_ids(country,date):
                     if line[3] == filtered_language and line[4]==country:
                         try:
                             content=getContent.get_content(line[0])
+                            print(content)
                             filtered_tw.append(str(content['content'])+"\t"+content['like_count']+"\t"+content['retweet_count']+"\n")
                             current_line += 1
                             if current_line>=70:
